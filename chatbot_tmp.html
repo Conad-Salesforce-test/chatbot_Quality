@@ -1,0 +1,32 @@
+<html>
+ 
+    <h1></h1>
+    
+<script type='text/javascript' src='https://service.force.com/embeddedservice/menu/fab.min.js'></script>
+<script type='text/javascript'>
+    var initESW = function(gslbBaseURL) {
+        // Required if you want labels in a language that’s different from your user’s context.
+        embedded_svc.menu.settings.language = 'it'; //For example, enter 'en' or 'en-US'
+        embedded_svc.menu.chat.settings.paramUserId = "1333921";
+
+        embedded_svc.menu.init(
+            'https://myconad2021--developmen.my.salesforce.com',
+            'https://d.la1-c1cs-fra.salesforceliveagent.com/chat',
+            gslbBaseURL,
+            '00D1x0000008eLM',
+            'Conad_Chat_Develop',
+            {
+               pageName: 'PrechatSnip'
+            }
+        );
+    };
+
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://myconad2021--developmen.my.salesforce.com/embeddedservice/menu/fab.min.js');
+        s.onload = function() {
+            initESW(null);
+        };
+        document.body.appendChild(s);
+    
+</script>
+</html>
