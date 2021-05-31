@@ -21,7 +21,7 @@
         );
         var styleEmb = document.createElement('style');
         styleEmb.type = 'text/css';
-        styleEmb.innerHTML = '.button.rich-menu-item.embeddedServiceLiveAgentStateChatRichItem { font-family: "DM Sans"}';
+        styleEmb.innerHTML = '.button.rich-menu-item.embeddedServiceLiveAgentStateChatRichItem {var(--lwc-fontFamily,"DM Sans");}';
         document.getElementsByTagName('head')[0].appendChild(styleEmb);
     };
 
