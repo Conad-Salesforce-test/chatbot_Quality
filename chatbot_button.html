@@ -1,0 +1,27 @@
+<html >
+<apex:includeLightning />
+<div id="LwcId"/>
+
+<script>
+$Lightning.use("c:chatButton", function(){
+
+$Lightning.createComponent("c:chatHeaderConad",{
+    label : 'Press Me!'
+    },
+    "LwcId",
+    function(cmp) {
+    console.log('Calling the Lwc component');
+    });
+$Lightning.createComponent("c:chatPrechatConad",{
+    label : 'Press Me!'
+    },
+    "LwcId",
+    function(cmp) {
+    console.log('Calling the Lwc component');
+    });        
+});
+    
+
+        
+    </script>
+</html>
