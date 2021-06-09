@@ -1,27 +1,31 @@
 <html >
-<html:includeLightning />
+<apex:page showHeader="false" standardStylesheets="false">
+<apex:includeLightning />
 <div id="LwcId"/>
 
 <script>
 $Lightning.use("c:chatButton", function(){
 
 $Lightning.createComponent("c:chatHeaderConad",{
-    label : 'Press Me!'
+    //label : 'Press Me!'
     },
     "LwcId",
     function(cmp) {
-    console.log('Calling the Lwc component');
+    console.log('Calling the header LWC component');
     });
-$Lightning.createComponent("c:chatPrechatConad",{
-    label : 'Press Me!'
+    
+    $Lightning.createComponent("c:chatPrechatConad",{
+    //label : 'Press Me!'
     },
     "LwcId",
     function(cmp) {
-    console.log('Calling the Lwc component');
-    });        
-});
-    
+    console.log('Calling the Prechat LWC component');
+    });    
 
-        
-    </script>
+});
+
+
+</script>
+
+</apex:page>
 </html>
