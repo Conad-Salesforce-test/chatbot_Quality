@@ -1,0 +1,36 @@
+<html>
+
+<div id="lightning"></div>
+  
+   <script>
+        console.log("avvio");
+   </script>
+  
+ <div id="LwcId"></div>
+
+      <script>
+            $Lightning.use("c:chatButton", function () {
+
+                  $Lightning.createComponent("c:chatHeaderConad", {
+                        //label : 'Press Me!'
+                  },
+                        "LwcId",
+                        function (cmp) {
+                              console.log('Calling the header LWC component');
+                        });
+
+                  $Lightning.createComponent("c:chatPrechatConad", {
+                        //label : 'Press Me!'
+                  },
+                        "LwcId",
+                        function (cmp) {
+                              console.log('Calling the Prechat LWC component');
+                        });
+
+            });
+
+
+      </script>
+
+  
+</html>
