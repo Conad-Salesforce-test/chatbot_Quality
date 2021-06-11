@@ -1,12 +1,21 @@
 <html>
 
- <script src="/lightning/lightning.out.js?v=2" type="text/javascript"></script>
-  
-   <script>
-        console.log("avvio");
-   </script>
-  
- <div id="LwcId"></div>
+<head>
+      <script src="/static/111213/js/perf/stub.js" type="text/javascript"></script>
+      <script src="/lightning/lightning.out.js?v=2" type="text/javascript"></script>
+      <script src="/jslibrary/1608226292230/sfdc/main.js" type="text/javascript"></script>
+      <script src="/jslibrary/jslabels/1622669122000/en_US.js" type="text/javascript"></script>
+      <script src="/jslibrary/1605126154230/sfdc/NetworkTracking.js" type="text/javascript"></script>
+      <script>try { NetworkTracking.init('/_ui/networks/tracking/NetworkTrackingServlet', 'network', '0661x000002VBxX'); } catch (x) { }</script>
+      <script>(function (UITheme) {
+                  UITheme.getUITheme = function () {
+                        return UserContext.uiTheme;
+                  };
+            }(window.UITheme = window.UITheme || {}));</script>
+</head>
+
+<body><span id="j_id0:j_id1"></span>
+      <div id="LwcId"></div>
 
       <script>
             $Lightning.use("c:chatButton", function () {
@@ -31,6 +40,7 @@
 
 
       </script>
-
+      <script>if (this.SfdcApp && this.SfdcApp.projectOneNavigator) { SfdcApp.projectOneNavigator.sendTitleToParent('ConadChat_button'); }</script>
+</body>
   
 </html>
