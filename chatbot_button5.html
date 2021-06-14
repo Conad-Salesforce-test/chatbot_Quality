@@ -109,6 +109,26 @@ font-size: 72px;
     } else {
         initESW('https://service.force.com');
     }
+  
+  
+  
+   
+   $Lightning.use("c:myAuraApp", function() {
+        $Lightning.createComponent("c:helloWorld", {
+            	//attributes here
+            },
+              "lightning",
+              function(cmp) {
+                console.log("LWC component was created");
+                // do some stuff
+              }
+        );
+      },
+       
+      );
+
+    
+    
 </script>
 
     </body>
