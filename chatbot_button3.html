@@ -17,7 +17,10 @@ res.setHeader('Access-Control-Allow-Methods', '*');
 res.setHeader('Access-Control-Expose-Headers', 'X-Api-Version, X-Request-Id, X-Response-Time');
 res.setHeader('Access-Control-Max-Age', '1000');
 
-     $Lightning.use("c:myAuraApp", function() {
+next();
+});
+   
+   $Lightning.use("c:myAuraApp", function() {
         $Lightning.createComponent("c:helloWorld", {
             	//attributes here
             },
