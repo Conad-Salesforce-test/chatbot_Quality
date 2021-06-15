@@ -56,6 +56,7 @@ font-size: 72px;
         var styleEmb = document.createElement('style');
         styleEmb.type = 'text/css';
         styleEmb.innerHTML = 'button.fab {visibility:hidden !important;}';
+        document.getElementsByTagName('head')[0].appendChild(styleEmb);
     };
 
     if (!window.embedded_svc || !window.embedded_svc.menu) {
