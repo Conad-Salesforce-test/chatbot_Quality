@@ -29,11 +29,23 @@ font-size: 72px;
  <body>
   
 <div class="chattaConNoi">
-<a onclick=document.getElementById("esw-fab").click();>
+<a onclick="myFunction()">
     Chatta con noi
 </a>
 </div>
 
+  
+  
+<script>
+function myFunction() {
+  document.getElementById("esw-fab").click();
+  var styleEmb = document.createElement('style');
+  styleEmb.type = 'text/css';
+  styleEmb.innerHTML = 'button.fab {visibility:visible;}';
+  document.getElementsByTagName('head')[0].appendChild(styleEmb);
+}
+</script>
+  
   
   
 <script type='text/javascript' src='https://service.force.com/embeddedservice/menu/fab.min.js'></script>
