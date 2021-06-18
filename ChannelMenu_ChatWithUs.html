@@ -145,10 +145,8 @@
                            try {
                              window.openDatabase(null, null, null, null);
                              not();
-                                 showSnackBar();
-                           } catch (_) {
-                                  
                              isPrivate = true;
+                           } catch (_) {
                              yes();
                            }
                          }
@@ -183,7 +181,7 @@
                         console.log('Browsing in private mode? ', isPrivate);
                               if (isPrivate){
                                     console.log('IIIII');
-                                    //showSnackBar();
+                                    showSnackBar();
                               }
                         });     
                         
