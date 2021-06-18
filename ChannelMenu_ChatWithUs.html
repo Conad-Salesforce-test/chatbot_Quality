@@ -145,8 +145,9 @@
                            try {
                              window.openDatabase(null, null, null, null);
                              not();
+                                 showSnackBar();
                            } catch (_) {
-                                  showSnackBar();
+                                  
                              isPrivate = true;
                              yes();
                            }
