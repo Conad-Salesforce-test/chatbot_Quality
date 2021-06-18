@@ -135,6 +135,7 @@
                                // if cookie is disabled, then all client side storage is disabled
                                // if all client side storage is disabled, then there is no point
                                // in using private mode
+                                   showSnackBar();
                                navigator.cookieEnabled ? yes() : not();
                              }
                              return true;
@@ -145,9 +146,9 @@
                            try {
                              window.openDatabase(null, null, null, null);
                              not();                               
-                             if (isSafari){
-                                   showSnackBar();
-                             }
+                            // if (isSafari){
+                             //      showSnackBar();
+                             //}
                            } catch (_) {
                              yes();
                            }
