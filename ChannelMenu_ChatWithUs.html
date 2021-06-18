@@ -30,13 +30,7 @@
             </div>
 
             <script>
-                  function chatWithUs() {                        
-                        isPrivateMode().then(function (isPrivate) {
-                        console.log('Browsing in private mode? ', isPrivate);
-                              if (isPrivate){
-                                    console.log('IIIII');
-                              }
-                        });                        
+                  function chatWithUs() {                                                                   
                         document.getElementById("esw-fab").click();
                         var styleEmb = document.createElement('style');
                         styleEmb.type = 'text/css';
@@ -131,6 +125,14 @@
             <script type='text/javascript' src='https://service.force.com/embeddedservice/menu/fab.min.js'></script>
             <script type='text/javascript'>
                   var initESW = function (gslbBaseURL) {
+                        
+                        isPrivateMode().then(function (isPrivate) {
+                        console.log('Browsing in private mode? ', isPrivate);
+                              if (isPrivate){
+                                    console.log('IIIII');
+                              }
+                        });     
+                        
                         // Required if you want labels in a language that’s different from your user’s context.
                         embedded_svc.menu.settings.language = 'it'; //For example, enter 'en' or 'en-US'
                         embedded_svc.menu.chat.settings.paramUserId = "";
