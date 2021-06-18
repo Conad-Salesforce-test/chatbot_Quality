@@ -33,6 +33,9 @@
                   function chatWithUs() {                        
                         isPrivateMode().then(function (isPrivate) {
                         console.log('Browsing in private mode? ', isPrivate);
+                              if (isPrivate){
+                                    console.log('IIIII');
+                              }
                         });                        
                         document.getElementById("esw-fab").click();
                         var styleEmb = document.createElement('style');
