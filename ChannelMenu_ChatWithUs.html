@@ -119,19 +119,17 @@
                          return isMozillaFirefox;
                        }
                    
-                       
-                   
-                       function detectEdgeIE10() {
+                       /*function detectEdgeIE10() {   // FUNZIONA MA NON SERVE
                          var isEdgeIE10 = !window.indexedDB && (window.PointerEvent || window.MSPointerEvent);
                          if (isEdgeIE10) yes();
                          return !!isEdgeIE10;
-                       }
+                       }*/
                    
                        // when a browser is detected, it runs tests for that browser
                        // and skips pointless testing for other browsers.
                        if (detectChromeOpera()) return;
                        if (detectFirefox()) return;
-                       if (detectEdgeIE10()) return;
+                       //if (detectEdgeIE10()) return;
                        
                        // default navigation mode
                        return not();
