@@ -119,42 +119,7 @@
                          return isMozillaFirefox;
                        }
                    
-                       function detectSafari() {
-                         var isSafari = navigator.userAgent.match(/Version\/([0-9\._]+).*Safari/);
-                         if (isSafari) {
-                           var testLocalStorage = function() {
-                             try {
-                               if (localStorage.length) not();
-                               else {
-                                 localStorage.setItem('inPrivate', '0');
-                                 localStorage.removeItem('inPrivate');
-                                 not();
-                               }
-                             } catch (_) {
-                               // Safari only enables cookie in private mode
-                               // if cookie is disabled, then all client side storage is disabled
-                               // if all client side storage is disabled, then there is no point
-                               // in using private mode
-                                   showSnackBar();
-                               navigator.cookieEnabled ? yes() : not();
-                             }
-                             return true;
-                           };
-                   
-                           var version = parseInt(isSafari[1], 10);
-                           if (version < 11) return testLocalStorage();
-                           try {
-                             window.openDatabase(null, null, null, null);
-                             not();                               
-                            // if (isSafari){
-                             //      showSnackBar();
-                             //}
-                           } catch (_) {
-                             yes();
-                           }
-                         }
-                         return !!isSafari;
-                       }
+                       
                    
                        function detectEdgeIE10() {
                          var isEdgeIE10 = !window.indexedDB && (window.PointerEvent || window.MSPointerEvent);
@@ -166,7 +131,6 @@
                        // and skips pointless testing for other browsers.
                        if (detectChromeOpera()) return;
                        if (detectFirefox()) return;
-                       if (detectSafari()) return;
                        if (detectEdgeIE10()) return;
                        
                        // default navigation mode
@@ -183,8 +147,7 @@
                         isPrivateMode().then(function (isPrivate) {
                         console.log('Browsing in private mode? ', isPrivate);
                               if (isPrivate){
-                                    console.log('IIIII');
-                                    //showSnackBar();
+                                    showSnackBar();
                               }
                         });     
                         
