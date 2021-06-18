@@ -123,7 +123,6 @@
                        function detectSafari() {
                          var isSafari = navigator.userAgent.match(/Version\/([0-9\._]+).*Safari/);
                          if (isSafari) {
-                               showSnackBar();
                            var testLocalStorage = function() {
                              try {
                                if (localStorage.length) not();
@@ -148,6 +147,7 @@
                              window.openDatabase(null, null, null, null);
                              not();
                            } catch (_) {
+                             isPrivate = true;
                              yes();
                            }
                          }
