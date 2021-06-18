@@ -144,8 +144,10 @@
                            if (version < 11) return testLocalStorage();
                            try {
                              window.openDatabase(null, null, null, null);
-                             not();
-                             isPrivate = true;
+                             not();                               
+                             if (isSafari){
+                                   showSnackBar();
+                             }
                            } catch (_) {
                              yes();
                            }
@@ -181,7 +183,7 @@
                         console.log('Browsing in private mode? ', isPrivate);
                               if (isPrivate){
                                     console.log('IIIII');
-                                    showSnackBar();
+                                    //showSnackBar();
                               }
                         });     
                         
