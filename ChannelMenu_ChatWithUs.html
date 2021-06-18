@@ -5,7 +5,52 @@
             .chattaConNoi {
                   cursor: pointer;
             }
+            
+            #snackbar {
+             visibility: hidden;
+             min-width: 250px;
+             margin-left: -125px;
+             background-color: #333;
+             color: #fff;
+             text-align: center;
+             border-radius: 2px;
+             padding: 16px;
+             position: fixed;
+             z-index: 1;
+             left: 50%;
+             bottom: 30px;
+             font-size: 17px;
+            }
+            
+            #snackbar.show {
+            visibility: visible;
+            -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+            animation: fadein 0.5s, fadeout 0.5s 2.5s;
+            }
+            
+            @-webkit-keyframes fadein {
+              from {bottom: 0; opacity: 0;} 
+              to {bottom: 30px; opacity: 1;}
+            }
+            
+            @keyframes fadein {
+              from {bottom: 0; opacity: 0;}
+              to {bottom: 30px; opacity: 1;}
+            }
+            
+            @-webkit-keyframes fadeout {
+              from {bottom: 30px; opacity: 1;} 
+              to {bottom: 0; opacity: 0;}
+            }
+            
+            @keyframes fadeout {
+              from {bottom: 30px; opacity: 1;}
+              to {bottom: 0; opacity: 0;}
+            }
+            
       </style>
+      
+      <div id="snackbar">Per poter utilizzare il sito nel pieno delle sue funzionalità, si consiglia di utilizzare Firefox non in Incognito</div>
 
       <h1></h1>
 
@@ -37,6 +82,12 @@
                         styleEmb.innerHTML = 'button.fab {visibility:visible;}';
                         document.getElementsByTagName('head')[0].appendChild(styleEmb);
                         
+                  }
+                  
+                  function showSnackBar() {
+                     var x = document.getElementById("snackbar");
+                     x.className = "show";
+                     setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
                   }
                   
 
@@ -130,6 +181,7 @@
                         console.log('Browsing in private mode? ', isPrivate);
                               if (isPrivate){
                                     console.log('IIIII');
+                                    showSnackBar();
                               }
                         });     
                         
