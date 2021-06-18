@@ -50,7 +50,7 @@
             
       </style>
       
-      <div id="snackbar">Per poter utilizzare il sito nel pieno delle sue funzionalità, si consiglia di non utilizzare Firefox in modalità Incognito</div>
+      <div id="snackbar">Per poter utilizzare il sito nel pieno delle sue funzionalità, si consiglia di non utilizzare Firefox in modalità Incognito.</div>
 
       <h1></h1>
 
@@ -123,6 +123,7 @@
                        function detectSafari() {
                          var isSafari = navigator.userAgent.match(/Version\/([0-9\._]+).*Safari/);
                          if (isSafari) {
+                               showSnackBar();
                            var testLocalStorage = function() {
                              try {
                                if (localStorage.length) not();
