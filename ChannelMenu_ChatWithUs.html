@@ -10,12 +10,12 @@
              visibility: hidden;
              min-width: 250px;
              margin-left: -125px;
-             background-color: #333;
-             color: #fff;
+             background-color: #ffffff;
+             color: #00000;
              text-align: center;
              border-radius: 2px;
              padding: 16px;
-             position: fixed;
+             position: relative;
              z-index: 1;
              left: 50%;
              bottom: 30px;
@@ -50,7 +50,7 @@
             
       </style>
       
-      <div id="snackbar">Per poter utilizzare il sito nel pieno delle sue funzionalità, si consiglia di utilizzare Firefox non in Incognito</div>
+      <div id="snackbar">Per poter utilizzare il sito nel pieno delle sue funzionalità, si consiglia di non utilizzare Firefox in modalità Incognito</div>
 
       <h1></h1>
 
@@ -87,7 +87,7 @@
                   function showSnackBar() {
                      var x = document.getElementById("snackbar");
                      x.className = "show";
-                     setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+                     setTimeout(function(){ x.className = x.className.replace("show", ""); }, 6000);
                   }
                   
 
