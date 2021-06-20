@@ -6,7 +6,7 @@
                   cursor: pointer;
             }
             
-            #snackbar {
+            #firefoxSnackbar {
              visibility: hidden;
              min-width: 250px;
              /*margin-left: -125px;*/
@@ -22,7 +22,29 @@
              font-size: 17px;
             }
             
-            #snackbar.show {
+            #firefoxSnackbar.show {
+            visibility: visible;
+            -webkit-animation: fadein 0.5s, fadeout 0.5s 5.5s;
+            animation: fadein 0.5s, fadeout 0.5s 5.5s;
+            }
+            
+            #IESnackbar {
+             visibility: hidden;
+             min-width: 250px;
+             /*margin-left: -125px;*/
+             background-color: #f37a28;
+             color: #ffffff;
+             text-align: center;
+             border-radius: 2px;
+             padding: 16px;
+             position: centered;
+             z-index: 1;
+             left: 50%;
+             bottom: 30px;
+             font-size: 17px;
+            }
+            
+            #IESnackbar.show {
             visibility: visible;
             -webkit-animation: fadein 0.5s, fadeout 0.5s 5.5s;
             animation: fadein 0.5s, fadeout 0.5s 5.5s;
@@ -111,7 +133,6 @@
                         }
                         else {
                               console.log('Not IE10OrOlder');
-                              return false;
                         }                        
 
                         // detectIE11                        
@@ -128,7 +149,6 @@
                          }
                          else {
                                console.log('Not IE11');
-                               return false;
                          }
                         
                         
@@ -140,11 +160,9 @@
                                // Edge (IE 12+) => return version number
                                console.log('IE12+');                              
                                console.log('IE12 version: ' + parseInt(ua.substring(edge + 5, ua.indexOf('.', edge)), 10));
-                               return false;
                             }
                         else {
                               console.log('Not IE12+');
-                              return false;
                         }
                         
                   
