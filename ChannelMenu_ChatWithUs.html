@@ -126,8 +126,10 @@
                        }*/
                            
                        function detectIE11() {
+                         console.log('detectIE11');
                          var ua = window.navigator.userAgent;
                          var trident = ua.indexOf('Trident/');
+                         console.log('trident: '+trident);
                          if (trident > 0) {
                                console.log('IE 11');
                                // IE 11 => return version number
