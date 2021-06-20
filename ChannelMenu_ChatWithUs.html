@@ -198,8 +198,8 @@
             }
             
             function isFirefoxPrivateMode() {
-                  var yes = function () { resolve(true); }; // is in private mode
-                  var not = function () { resolve(false); }; // not in private mode
+                  //var yes = function () { resolve(true); }; // is in private mode
+                  //var not = function () { resolve(false); }; // not in private mode
                  var isMozillaFirefox = 'MozAppearance' in document.documentElement.style;
                  console.log('isFirefoxPrivateMode');
                  if (isMozillaFirefox) {
@@ -212,8 +212,8 @@
                              var db = indexedDB.open('inPrivate');
                              console.log('db.onsuccess: ', db.onsuccess);
                              console.log('db.onerror: ', db.onerror);
-                             db.onsuccess = not;
-                             db.onerror = yes;
+                             db.onsuccess = false;
+                             db.onerror = true;
                              //return true;
                        }
                  }
