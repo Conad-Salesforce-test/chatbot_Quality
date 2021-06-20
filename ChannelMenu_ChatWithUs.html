@@ -197,9 +197,9 @@
 
             }
             
-            function isFirefoxPrivateMode() {
-                  //var yes = function () { resolve(true); }; // is in private mode
-                  //var not = function () { resolve(false); }; // not in private mode
+              function isFirefoxPrivateMode(function detect(resolve){
+                 var yes = function () { resolve(true); }; // is in private mode
+                 var not = function () { resolve(false); }; // not in private mode
                  var isMozillaFirefox = 'MozAppearance' in document.documentElement.style;
                  console.log('isFirefoxPrivateMode');
                  if (isMozillaFirefox) {
@@ -218,7 +218,10 @@
                        }
                  }
                  return isMozillaFirefox;
-            }
+              });
+            
+
+            
 
 
 
