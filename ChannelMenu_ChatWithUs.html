@@ -50,7 +50,7 @@
             animation: fadein 0.5s, fadeout 0.5s 5.5s;
             }
             
-            @-webkit-keyframes fadein {
+           /* @-webkit-keyframes fadein {
               from {bottom: 0; opacity: 0;} 
               to {bottom: 30px; opacity: 1;}
             }
@@ -68,7 +68,7 @@
             @keyframes fadeout {
               from {bottom: 30px; opacity: 1;}
               to {bottom: 0; opacity: 0;}
-            }
+            }*/
             
       </style>
       
@@ -230,7 +230,7 @@
                                     showIESnackBar();
                         }
                         isPrivateMode().then(function (isPrivate) {
-                        console.log('Browsing in private mode? ', isPrivate);
+                        console.log('Browsing in Firefox private mode? ', isPrivate);
                               if (isPrivate){
                                     showFirefoxSnackBar();
                               }
