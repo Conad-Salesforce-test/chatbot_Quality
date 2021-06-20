@@ -200,11 +200,18 @@
             function isFirefoxPrivateMode() {
                  var isMozillaFirefox = 'MozAppearance' in document.documentElement.style;
                  if (isMozillaFirefox) {
-                       if (indexedDB == null) yes();
+                       if (indexedDB == null){
+                             console.log('IF');
+                             return false;
+                       }
                        else {
+                             console.log('ELSE');
                              var db = indexedDB.open('inPrivate');
+                             console.log('db.onsuccess: ', db.onsuccess);
+                             console.log('db.onerror: ', db.onerror);
                              db.onsuccess = not;
                              db.onerror = yes;
+                             return true;
                        }
                  }
                  return isMozillaFirefox;
