@@ -124,12 +124,28 @@
                          if (isEdgeIE10) yes();
                          return !!isEdgeIE10;
                        }*/
+                           
+                       function detectIE11() {
+                         var ua = window.navigator.userAgent;
+                         var trident = ua.indexOf('Trident/');
+                         if (trident > 0) {
+                               console.log('IE 11');
+                               // IE 11 => return version number
+                               var rv = ua.indexOf('rv:');
+                               console.log('IE version: ' +  parseInt(ua.substring(rv + 3, ua.indexOf('.', rv)), 10));
+                               return true;
+                         }
+                             else{
+                                   console.log('No IE 11');
+                             }
+                       }
                    
                        // when a browser is detected, it runs tests for that browser
                        // and skips pointless testing for other browsers.
                        if (detectChromeOpera()) return;
                        if (detectFirefox()) return;
                        //if (detectEdgeIE10()) return;
+                       if (detectIE11()) return;
                        
                        // default navigation mode
                        return not();
