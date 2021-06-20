@@ -180,8 +180,8 @@
                   }
 
 
-                  // detectIE12+
-                  console.log('detectIE12+');
+                  // detectIE12+   funziona ma non serve
+                 /* console.log('detectIE12+');
                   var ua = window.navigator.userAgent;
                   var edge = ua.indexOf('Edge/');
                   if (edge > 0) {
@@ -192,57 +192,59 @@
                   else {
                         console.log('Not IE12+');
                   }
+                  */
 
 
+            }
+            
+            function isFirefoxPrivateMode() {
+                 var isMozillaFirefox = 'MozAppearance' in document.documentElement.style;
+                 if (isMozillaFirefox) {
+                       if (indexedDB == null) yes();
+                       else {
+                             var db = indexedDB.open('inPrivate');
+                             db.onsuccess = not;
+                             db.onerror = yes;
+                       }
+                 }
+                 return isMozillaFirefox;
             }
 
 
 
 
-            function isPrivateMode() {
-                  return new Promise(function detect(resolve) {
-                        var yes = function () { resolve(true); }; // is in private mode
-                        var not = function () { resolve(false); }; // not in private mode
+      // function isPrivateMode() {
+      //       return new Promise(function detect(resolve) {
+      //             var yes = function () { resolve(true); }; // is in private mode
+      //             var not = function () { resolve(false); }; // not in private mode
 
-                        function detectChromeOpera() {
-                              // https://developers.google.com/web/updates/2017/08/estimating-available-storage-space
-                              var isChromeOpera = /(?=.*(opera|chrome)).*/i.test(navigator.userAgent) && navigator.storage && navigator.storage.estimate;
-                              if (isChromeOpera) {
-                                    navigator.storage.estimate().then(function (data) {
-                                          return data.quota < 120000000 ? yes() : not();
-                                    });
-                              }
-                              return !!isChromeOpera;
-                        }
+      //             function isFirefoxPrivateMode() {
+      //                   var isMozillaFirefox = 'MozAppearance' in document.documentElement.style;
+      //                   if (isMozillaFirefox) {
+      //                         if (indexedDB == null) yes();
+      //                         else {
+      //                               var db = indexedDB.open('inPrivate');
+      //                               db.onsuccess = not;
+      //                               db.onerror = yes;
+      //                         }
+      //                   }
+      //                   return isMozillaFirefox;
+      //             }
 
-                        function detectFirefox() {
-                              var isMozillaFirefox = 'MozAppearance' in document.documentElement.style;
-                              if (isMozillaFirefox) {
-                                    if (indexedDB == null) yes();
-                                    else {
-                                          var db = indexedDB.open('inPrivate');
-                                          db.onsuccess = not;
-                                          db.onerror = yes;
-                                    }
-                              }
-                              return isMozillaFirefox;
-                        }
+      //             /*function detectEdgeIE10() {   // funziona ma non serve
+      //               var isEdgeIE10 = !window.indexedDB && (window.PointerEvent || window.MSPointerEvent);
+      //               if (isEdgeIE10) yes();
+      //               return !!isEdgeIE10;
+      //             }*/
 
-                        /*function detectEdgeIE10() {   // FUNZIONA MA NON SERVE
-                          var isEdgeIE10 = !window.indexedDB && (window.PointerEvent || window.MSPointerEvent);
-                          if (isEdgeIE10) yes();
-                          return !!isEdgeIE10;
-                        }*/
-
-                        // when a browser is detected, it runs tests for that browser
-                        // and skips pointless testing for other browsers.
-                        if (detectChromeOpera()) return;
-                        if (detectFirefox()) return;
-                        //if (detectEdgeIE10()) return;
-                        // default navigation mode
-                        return not();
-                  });
-            }
+      //             // when a browser is detected, it runs tests for that browser
+      //             // and skips pointless testing for other browsers.
+      //             if (detectFirefox()) return;
+      //             //if (detectEdgeIE10()) return;
+      //             // default navigation mode
+      //             return not();
+      //       });
+      // }
 
 
 
@@ -257,12 +259,18 @@
                   if (usingOldIE) {
                         showIESnackBar();
                   }
-                  isPrivateMode().then(function (isPrivate) {
-                        console.log('Browsing in Firefox private mode? ', isPrivate);
-                        if (isPrivate) {
-                              showFirefoxSnackBar();
-                        }
-                  });
+                  
+                  var isFirefoxInPrivateMode = isFirefoxPrivateMode();
+                  console.log('isFirefoxInPrivateMode? ', isFirefoxInPrivateMode);
+                  if (isFirefoxInPrivateMode) {
+                        showFirefoxSnackBar();
+                  }
+                  //isPrivateMode().then(function (isPrivate) {
+                  //      console.log('Browsing in Firefox private mode? ', isPrivate);
+                  //      if (isPrivate) {
+                  //            showFirefoxSnackBar();
+                  //      }
+                  //});
 
                   // Required if you want labels in a language that’s different from your user’s context.
                   embedded_svc.menu.settings.language = 'it'; //For example, enter 'en' or 'en-US'
