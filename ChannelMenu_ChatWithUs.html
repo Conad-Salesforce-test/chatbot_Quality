@@ -149,66 +149,58 @@
 
             function detectIEVersion() {
 
-                  // detectIE10OrOlder
-                  console.log('detectIE10OrOlder');
+                  // detect IE10 or older
+                  console.log('detectIE10 Or Older');
                   var ua = window.navigator.userAgent;
                   var msie = ua.indexOf('MSIE ');
                   if (msie > 0) {
                         // IE 10 or older => return version number
-                        console.log('IE10OrOlder');
                         console.log('IE version: ' + parseInt(ua.substring(msie + 5, ua.indexOf('.', msie)), 10));
                         return true;
                   }
                   else {
-                        console.log('Not IE10OrOlder');
+                        console.log('Not IE10 Or Older');
                   }
 
-                  // detectIE11
+                  // detect IE11
                   console.log('detectIE11');
                   var ua = window.navigator.userAgent;
                   var trident = ua.indexOf('Trident/');
-                  console.log('trident: ' + trident);
                   if (trident > 0) {
-                        console.log('IE11');
                         // IE 11 => return version number
                         var rv = ua.indexOf('rv:');
-                        console.log('IE version: ' + parseInt(ua.substring(rv + 3, ua.indexOf('.', rv)), 10));
+                        console.log('IE11 version: ' + parseInt(ua.substring(rv + 3, ua.indexOf('.', rv)), 10));
                         return true;
                   }
                   else {
                         console.log('Not IE11');
                   }
-            }           
+            }
 
-      function isPrivateMode() {
-            return new Promise(function detect(resolve) {
-                  var yes = function () { resolve(true); }; // is in private mode
-                  var not = function () { resolve(false); }; // not in private mod
-                  function isFirefoxPrivateMode() {
-                        var isMozillaFirefox = 'MozAppearance' in document.documentElement.style;
-                        if (isMozillaFirefox) {
-                              if (indexedDB == null) yes();
-                              else {
-                                    var db = indexedDB.open('inPrivate');
-                                    db.onsuccess = not;
-                                    db.onerror = yes;
+            // Check if Firefox is running in private mode
+            function isPrivateMode() {
+                  return new Promise(function detect(resolve) {
+                        var yes = function () { resolve(true); }; // is in private mode
+                        var not = function () { resolve(false); }; // not in private mod
+
+                        function isFirefoxPrivateMode() {
+                              var isMozillaFirefox = 'MozAppearance' in document.documentElement.style;
+                              if (isMozillaFirefox) {
+                                    if (indexedDB == null) yes();
+                                    else {
+                                          var db = indexedDB.open('inPrivate');
+                                          db.onsuccess = not;
+                                          db.onerror = yes;
+                                    }
                               }
+                              return isMozillaFirefox;
                         }
-                        return isMozillaFirefox;
-                  }
-                  
 
-                  // when a browser is detected, it runs tests for that browser
-                  // and skips pointless testing for other browsers.
-                  if (isFirefoxPrivateMode()) return;
-                  //if (detectEdgeIE10()) return;
-                  // default navigation mode
-                  return not();
-            });
-                  
-        }
-      
-
+                        if (isFirefoxPrivateMode()) return;
+                        // default navigation mode
+                        return not();
+                  });
+            }
 
       </script>
 
@@ -217,18 +209,17 @@
             var initESW = function (gslbBaseURL) {
 
                   var usingOldIE = detectIEVersion();
-                  console.log('usingOldIE? ', usingOldIE);
                   if (usingOldIE) {
                         showIESnackBar();
                   }
                   else {
                         isPrivateMode().then(function (isPrivate) {
-                          console.log('Browsing in Firefox private mode? ', isPrivate);
-                          if (isPrivate) {
-                              showFirefoxSnackBar();
-                          }
+                              console.log('Browsing in Firefox private mode? ', isPrivate);
+                              if (isPrivate) {
+                                    showFirefoxSnackBar();
+                              }
                         });
-                  }                  
+                  }
 
                   // Required if you want labels in a language that’s different from your user’s context.
                   embedded_svc.menu.settings.language = 'it'; //For example, enter 'en' or 'en-US'
