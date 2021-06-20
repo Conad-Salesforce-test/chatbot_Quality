@@ -198,7 +198,10 @@
             }
             
             function isFirefoxPrivateMode() {
+                  var yes = function () { resolve(true); }; // is in private mode
+                  var not = function () { resolve(false); }; // not in private mode
                  var isMozillaFirefox = 'MozAppearance' in document.documentElement.style;
+                 console.log('isFirefoxPrivateMode');
                  if (isMozillaFirefox) {
                        if (indexedDB == null){
                              console.log('IF');
@@ -211,7 +214,7 @@
                              console.log('db.onerror: ', db.onerror);
                              db.onsuccess = not;
                              db.onerror = yes;
-                             return true;
+                             //return true;
                        }
                  }
                  return isMozillaFirefox;
@@ -220,38 +223,38 @@
 
 
 
-      // function isPrivateMode() {
-      //       return new Promise(function detect(resolve) {
-      //             var yes = function () { resolve(true); }; // is in private mode
-      //             var not = function () { resolve(false); }; // not in private mode
+      //function isPrivateMode() {
+      //      return new Promise(function detect(resolve) {
+      //            var yes = function () { resolve(true); }; // is in private mode
+      //            var not = function () { resolve(false); }; // not in private mode
 
-      //             function isFirefoxPrivateMode() {
-      //                   var isMozillaFirefox = 'MozAppearance' in document.documentElement.style;
-      //                   if (isMozillaFirefox) {
-      //                         if (indexedDB == null) yes();
-      //                         else {
-      //                               var db = indexedDB.open('inPrivate');
-      //                               db.onsuccess = not;
-      //                               db.onerror = yes;
-      //                         }
-      //                   }
-      //                   return isMozillaFirefox;
-      //             }
+      //            function isFirefoxPrivateMode() {
+      //                  var isMozillaFirefox = 'MozAppearance' in document.documentElement.style;
+      //                  if (isMozillaFirefox) {
+      //                        if (indexedDB == null) yes();
+      //                        else {
+      //                              var db = indexedDB.open('inPrivate');
+      //                              db.onsuccess = not;
+      //                              db.onerror = yes;
+      //                        }
+      //                  }
+      //                  return isMozillaFirefox;
+      //            }
 
-      //             /*function detectEdgeIE10() {   // funziona ma non serve
-      //               var isEdgeIE10 = !window.indexedDB && (window.PointerEvent || window.MSPointerEvent);
-      //               if (isEdgeIE10) yes();
-      //               return !!isEdgeIE10;
-      //             }*/
+      //            /*function detectEdgeIE10() {   // funziona ma non serve
+      //              var isEdgeIE10 = !window.indexedDB && (window.PointerEvent || window.MSPointerEvent);
+      //              if (isEdgeIE10) yes();
+      //              return !!isEdgeIE10;
+      //            }*/
 
-      //             // when a browser is detected, it runs tests for that browser
-      //             // and skips pointless testing for other browsers.
-      //             if (detectFirefox()) return;
-      //             //if (detectEdgeIE10()) return;
-      //             // default navigation mode
-      //             return not();
-      //       });
-      // }
+      //            // when a browser is detected, it runs tests for that browser
+      //            // and skips pointless testing for other browsers.
+      //            if (detectFirefox()) return;
+      //            //if (detectEdgeIE10()) return;
+      //            // default navigation mode
+      //            return not();
+      //      });
+      //}
 
 
 
