@@ -88,7 +88,28 @@
                      var x = document.getElementById("snackbar");
                      x.className = "show";
                      setTimeout(function(){ x.className = x.className.replace("show", ""); }, 6000);
-                  }             
+                  }           
+                  
+                  function detectIE11() {
+                         console.log('detectIE11');
+                         var ua = window.navigator.userAgent;
+                         var trident = ua.indexOf('Trident/');
+                         console.log('trident: '+trident);
+                         if (trident > 0) {
+                               console.log('IE 11');
+                               // IE 11 => return version number
+                               var rv = ua.indexOf('rv:');
+                               console.log('IE version: ' +  parseInt(ua.substring(rv + 3, ua.indexOf('.', rv)), 10));
+                               //return true;
+                         }
+                         else {
+                               console.log('No IE 11');
+                               //return false;
+                         }
+                  }
+                  
+                  
+                  
 
                   function isPrivateMode() {
                      return new Promise(function detect(resolve) {
@@ -123,24 +144,7 @@
                          var isEdgeIE10 = !window.indexedDB && (window.PointerEvent || window.MSPointerEvent);
                          if (isEdgeIE10) yes();
                          return !!isEdgeIE10;
-                       }*/
-                           
-                       function detectIE11() {
-                         console.log('detectIE11');
-                         var ua = window.navigator.userAgent;
-                         var trident = ua.indexOf('Trident/');
-                         console.log('trident: '+trident);
-                         if (trident > 0) {
-                               console.log('IE 11');
-                               // IE 11 => return version number
-                               var rv = ua.indexOf('rv:');
-                               console.log('IE version: ' +  parseInt(ua.substring(rv + 3, ua.indexOf('.', rv)), 10));
-                               return true;
-                         }
-                             else{
-                                   console.log('No IE 11');
-                             }
-                       }
+                       }*/                                                  
                    
                        // when a browser is detected, it runs tests for that browser
                        // and skips pointless testing for other browsers.
@@ -153,12 +157,16 @@
                        return not();
                      });
                   }
+                  
+                  
  
             </script>
 
             <script type='text/javascript' src='https://service.force.com/embeddedservice/menu/fab.min.js'></script>
             <script type='text/javascript'>
                   var initESW = function (gslbBaseURL) {
+                        
+                        detectIE11();
                         
                         isPrivateMode().then(function (isPrivate) {
                         console.log('Browsing in private mode? ', isPrivate);
