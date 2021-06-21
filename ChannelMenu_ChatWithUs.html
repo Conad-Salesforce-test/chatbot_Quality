@@ -185,6 +185,12 @@
                         return true;
                   }
                   else {
+                        
+                        var bubble = document.getElementById("esw-fab");
+                        console.log('bubble: ' , bubble);
+                        bubble.addEventListener('click', showIESnackBar);
+                        
+                        
                         console.log('Not IE11');
                   }
             }
