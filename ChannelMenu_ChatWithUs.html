@@ -206,17 +206,21 @@
                   });
             }
 
-            //function bubbleClickHandler(){
-            //       showIESnackBar();
-            //}
-
       </script>
 
       <script type='text/javascript' src='https://service.force.com/embeddedservice/menu/fab.min.js'></script>
       <script type='text/javascript'>
             var initESW = function (gslbBaseURL) {
 
-
+                  var usingOldIE = detectIEVersion();
+                  if (!usingOldIE) {     // necessary condition, because old versions of IE don't support Promises
+                        isPrivateMode().then(function (isPrivate) {
+                              console.log('Browsing in Firefox private mode? ', isPrivate);
+                              if (isPrivate) {
+                                    showFirefoxSnackBar();
+                              }
+                        });
+                  }
 
                   // Required if you want labels in a language that’s different from your user’s context.
                   embedded_svc.menu.settings.language = 'it'; //For example, enter 'en' or 'en-US'
@@ -236,23 +240,6 @@
                   styleEmb.type = 'text/css';
                   styleEmb.innerHTML = '.embedded-service button#esw-fab{background-attachment: fixed;} .embedded-service .fab{background-attachment: fixed !important; //background-color:#f37a28;} .embedded-service .cp-conad-chat-start-submt {background-attachment:fixed} .embedded-service .ch-conad-chat-topbar-close//{background-attachment:fixed}';
                   document.getElementsByTagName('head')[0].appendChild(styleEmb);
-                  
-                  var usingOldIE = detectIEVersion();
-                  if (!usingOldIE) {
-                        isPrivateMode().then(function (isPrivate) {
-                              console.log('Browsing in Firefox private mode? ', isPrivate);
-                              if (isPrivate) {
-                                    showFirefoxSnackBar();
-                              }
-                        });
-                  }
-                  else {
-                        //var bubbleIsClicked = false;
-                        var bubble = document.getElementById("esw-fab");
-                        bubble.addEventListener('click', showIESnackBar);
-                  }
-                  
-                  
             };
 
             if (!window.embedded_svc || !window.embedded_svc.menu) {
