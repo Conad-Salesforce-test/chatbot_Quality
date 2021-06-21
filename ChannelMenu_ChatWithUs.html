@@ -138,6 +138,8 @@
                   document.getElementsByTagName('head')[0].appendChild(styleEmb);
 
             }
+            
+            
 
             function showIESnackBar() {
                   var x = document.getElementById("IESnackbar");
@@ -160,6 +162,11 @@
                   if (msie > 0) {
                         // IE 10 or older => return version number
                         console.log('IE version: ' + parseInt(ua.substring(msie + 5, ua.indexOf('.', msie)), 10));
+                        
+                        var bubble = document.getElementById("esw-fab");
+                        console.log('bubble: ' , bubble);
+                        bubble.addEventListener('click', showIESnackBar);
+                        
                         return true;
                   }
                   else {
@@ -241,8 +248,7 @@
                   styleEmb.innerHTML = '.embedded-service button#esw-fab{background-attachment: fixed;} .embedded-service .fab{background-attachment: fixed !important; //background-color:#f37a28;} .embedded-service .cp-conad-chat-start-submt {background-attachment:fixed} .embedded-service .ch-conad-chat-topbar-close//{background-attachment:fixed}';
                   document.getElementsByTagName('head')[0].appendChild(styleEmb);
 
-                  var bubble = document.getElementById("esw-fab");
-                  bubble.addEventListener('click', showIESnackBar);
+                  
             };
 
             if (!window.embedded_svc || !window.embedded_svc.menu) {
