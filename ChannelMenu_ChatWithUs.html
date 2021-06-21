@@ -176,21 +176,10 @@
                   if (trident > 0) {
                         // IE 11 => return version number
                         var rv = ua.indexOf('rv:');
-                        console.log('IE11 version: ' + parseInt(ua.substring(rv + 3, ua.indexOf('.', rv)), 10));
-                        
-                        var bubble = document.getElementById("esw-fab");
-                        console.log('bubble: ' , bubble);
-                        bubble.addEventListener('click', showIESnackBar);
-                        
+                        console.log('IE11 version: ' + parseInt(ua.substring(rv + 3, ua.indexOf('.', rv)), 10));                                                
                         return true;
                   }
-                  else {
-                        
-                        var bubble = document.getElementById("esw-fab");
-                        console.log('bubble: ' , bubble);
-                        bubble.addEventListener('click', showIESnackBar);
-                        
-                        
+                  else {                        
                         console.log('Not IE11');
                   }
             }
@@ -219,6 +208,12 @@
                         return not();
                   });
             }
+            
+            function listenTheBubble(){
+                 var bubble = document.getElementById("esw-fab");
+                 console.log('bubble: ' , bubble);
+                 bubble.addEventListener('click', showIESnackBar);
+            }
 
       </script>
 
@@ -234,6 +229,9 @@
                                     showFirefoxSnackBar();
                               }
                         });
+                  }
+                  else {
+                        listenTheBubble();
                   }
 
                   // Required if you want labels in a language that’s different from your user’s context.
