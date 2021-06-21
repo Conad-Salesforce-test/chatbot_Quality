@@ -208,11 +208,18 @@
                         return not();
                   });
             }
-            
+
+            var myInterval;
+            function setInterval_listenClickOnBubble(){
+                  myInterval = setInterval(listenClickOnBubble, 2000);
+            }
             function listenClickOnBubble(){
                  var bubble = document.getElementById("esw-fab");
                  console.log('bubble: ' , bubble);
-                 bubble.addEventListener('click', showIESnackBar);
+                 if (bubble != null){
+                     bubble.addEventListener('click', showIESnackBar);
+                 }
+                 clearInterval(myInterval);
             }
 
       </script>
@@ -231,8 +238,7 @@
                         });
                   }
                   else { // only on Internet Explorer versions before Microsoft Edge
-                        var myInterval = setInterval(listenClickOnBubble, 2000);
-                        clearInterval(myInterval);
+                        setInterval_listenClickOnBubble();
                   }
 
                   // Required if you want labels in a language that’s different from your user’s context.
