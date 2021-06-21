@@ -158,10 +158,7 @@
                         var msie = ua.indexOf("MSIE ");
                         if (msie > 0) {
                               // IE 10 or older => return version number
-                              console.log(
-                                    "IE version: " +
-                                    parseInt(ua.substring(msie + 5, ua.indexOf(".", msie)), 10)
-                              );
+                              console.log("IE version: " + parseInt(ua.substring(msie + 5, ua.indexOf(".", msie)), 10));
                               return true;
                         } else {
                               //console.log('Not IE10 Or Older');
@@ -174,10 +171,7 @@
                         if (trident > 0) {
                               // IE 11 => return version number
                               var rv = ua.indexOf("rv:");
-                              console.log(
-                                    "IE11 version: " +
-                                    parseInt(ua.substring(rv + 3, ua.indexOf(".", rv)), 10)
-                              );
+                              console.log("IE11 version: " + parseInt(ua.substring(rv + 3, ua.indexOf(".", rv)), 10));
                               return true;
                         } else {
                               //console.log('Not IE11');
