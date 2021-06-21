@@ -205,10 +205,6 @@
                         return not();
                   });
             }
-            
-            //function bubbleClickHandler(){
-            //       showIESnackBar();
-            //}
 
       </script>
 
@@ -217,18 +213,13 @@
             var initESW = function (gslbBaseURL) {
 
                   var usingOldIE = detectIEVersion();
-                  if (!usingOldIE) {
+                  if (!usingOldIE) {     // necessary condition, because old versions of IE don't support Promises
                         isPrivateMode().then(function (isPrivate) {
                               console.log('Browsing in Firefox private mode? ', isPrivate);
                               if (isPrivate) {
                                     showFirefoxSnackBar();
                               }
                         });
-                  }
-                  else {
-                     //var bubbleIsClicked = false;
-                     var bubble = document.getElementById("esw-fab");
-                     bubble.addEventListener('click', showIESnackBar); 
                   }
 
                   // Required if you want labels in a language that’s different from your user’s context.
