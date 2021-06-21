@@ -127,6 +127,10 @@
 
       <script>
             function chatWithUs() {
+                  var usingOldIE = detectIEVersion();
+                  if (usingOldIE) {
+                        showIESnackBar();
+                  }
                   document.getElementById("esw-fab").click();
                   var styleEmb = document.createElement('style');
                   styleEmb.type = 'text/css';
@@ -208,18 +212,12 @@
       <script type='text/javascript'>
             var initESW = function (gslbBaseURL) {
 
-                  var usingOldIE = detectIEVersion();
-                  if (usingOldIE) {
-                        showIESnackBar();
-                  }
-                  else {
-                        isPrivateMode().then(function (isPrivate) {
-                              console.log('Browsing in Firefox private mode? ', isPrivate);
-                              if (isPrivate) {
-                                    showFirefoxSnackBar();
-                              }
-                        });
-                  }
+                  isPrivateMode().then(function (isPrivate) {
+                        console.log('Browsing in Firefox private mode? ', isPrivate);
+                        if (isPrivate) {
+                              showFirefoxSnackBar();
+                        }
+                  });
 
                   // Required if you want labels in a language that’s different from your user’s context.
                   embedded_svc.menu.settings.language = 'it'; //For example, enter 'en' or 'en-US'
