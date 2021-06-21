@@ -154,7 +154,7 @@
             function detectIEVersion() {
 
                   // detect IE10 or older
-                  console.log('detectIE10 Or Older');
+                  //console.log('detectIE10 Or Older');
                   var ua = window.navigator.userAgent;
                   var msie = ua.indexOf('MSIE ');
                   if (msie > 0) {
@@ -163,11 +163,11 @@
                         return true;
                   }
                   else {
-                        console.log('Not IE10 Or Older');
+                        //console.log('Not IE10 Or Older');
                   }
 
                   // detect IE11
-                  console.log('detectIE11');
+                  //console.log('detectIE11');
                   var ua = window.navigator.userAgent;
                   var trident = ua.indexOf('Trident/');
                   if (trident > 0) {
@@ -177,7 +177,7 @@
                         return true;
                   }
                   else {
-                        console.log('Not IE11');
+                        //console.log('Not IE11');
                   }
             }
 
@@ -212,7 +212,7 @@
             }
             function listenClickOnBubble(){
                  var bubble = document.getElementById("esw-fab");
-                 console.log('bubble: ' , bubble);
+                 //console.log('bubble: ' , bubble);
                  if (bubble != null){
                      bubble.addEventListener('click', showIESnackBar);
                      clearInterval(myInterval);
@@ -228,7 +228,7 @@
                   var usingOldIE = detectIEVersion();
                   if (!usingOldIE) {     // necessary condition, because old versions of IE don't support Promises
                         isPrivateMode().then(function (isPrivate) {
-                              console.log('Browsing in Firefox private mode? ', isPrivate);
+                              //console.log('Browsing in Firefox private mode? ', isPrivate);
                               if (isPrivate) {
                                     showFirefoxSnackBar();
                               }
