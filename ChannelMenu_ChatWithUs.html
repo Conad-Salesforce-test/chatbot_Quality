@@ -209,7 +209,7 @@
                   });
             }
             
-            function listenTheBubble(){
+            function listenClickOnBubble(){
                  var bubble = document.getElementById("esw-fab");
                  console.log('bubble: ' , bubble);
                  bubble.addEventListener('click', showIESnackBar);
@@ -230,8 +230,9 @@
                               }
                         });
                   }
-                  else {
-                        setInterval(listenTheBubble, 2000);
+                  else { // only on Internet Explorer versions before Microsoft Edge
+                        var myInterval = setInterval(listenClickOnBubble, 2000);
+                        clearInterval(myInterval);
                   }
 
                   // Required if you want labels in a language that’s different from your user’s context.
