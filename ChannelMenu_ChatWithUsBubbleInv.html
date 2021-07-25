@@ -1,0 +1,271 @@
+<html>
+      <style type="text/css">
+            .chattaConNoi {
+                  cursor: pointer;
+            }
+
+            #firefoxSnackbar {
+                  visibility: hidden;
+                  min-width: 250px;
+                  /*margin-left: -125px;*/
+                  background-color: #f37a28;
+                  color: #ffffff;
+                  text-align: center;
+                  border-radius: 2px;
+                  padding: 16px;
+                  position: centered;
+                  z-index: 1;
+                  left: 50%;
+                  bottom: 30px;
+                  font-size: 17px;
+            }
+
+            #firefoxSnackbar.show {
+                  visibility: visible;
+                  -webkit-animation: fadein 0.5s, fadeout 0.5s 5.5s;
+                  animation: fadein 0.5s, fadeout 0.5s 5.5s;
+            }
+
+            #IESnackbar {
+                  visibility: hidden;
+                  min-width: 250px;
+                  /*margin-left: -125px;*/
+                  background-color: #f37a28;
+                  color: #ffffff;
+                  text-align: center;
+                  border-radius: 2px;
+                  padding: 16px;
+                  position: centered;
+                  z-index: 1;
+                  left: 50%;
+                  bottom: 30px;
+                  font-size: 17px;
+            }
+
+            #IESnackbar.show {
+                  visibility: visible;
+                  -webkit-animation: fadein 0.5s, fadeout 0.5s 5.5s;
+                  animation: fadein 0.5s, fadeout 0.5s 5.5s;
+            }
+
+            @-webkit-keyframes fadein {
+                  from {
+                        bottom: 0;
+                        opacity: 0;
+                  }
+
+                  to {
+                        bottom: 30px;
+                        opacity: 1;
+                  }
+            }
+
+            @keyframes fadein {
+                  from {
+                        bottom: 0;
+                        opacity: 0;
+                  }
+
+                  to {
+                        bottom: 30px;
+                        opacity: 1;
+                  }
+            }
+
+            @-webkit-keyframes fadeout {
+                  from {
+                        bottom: 30px;
+                        opacity: 1;
+                  }
+
+                  to {
+                        bottom: 0;
+                        opacity: 0;
+                  }
+            }
+
+            @keyframes fadeout {
+                  from {
+                        bottom: 30px;
+                        opacity: 1;
+                  }
+
+                  to {
+                        bottom: 0;
+                        opacity: 0;
+                  }
+            }
+      </style>
+
+      <div id="firefoxSnackbar">
+            Per poter utilizzare il sito nel pieno delle sue funzionalità, si consiglia di non utilizzare Firefox in modalità Incognito.
+      </div>
+      <div id="IESnackbar">
+            Per poter utilizzare il sito nel pieno delle sue funzionalità, si consiglia di utilizzare una versione più recente di Internet Explorer.
+      </div>
+
+      <h1></h1>
+
+      <head>
+            <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+            <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=DM+Sans&display=swap" />
+            <style>
+                  h1 {
+                        font-family: 'DM Sans', serif;
+                        font-size: 72px;
+                  }
+            </style>
+      </head>
+
+      <body>
+            <div class="chattaConNoi">
+                  <a onclick="chatWithUs()"> Chatta con noi </a>
+            </div>
+
+            <script>
+                  function chatWithUs() {
+                        var usingOldIE = detectIEVersion();
+                        if (usingOldIE) {
+                              showIESnackBar();
+                        }
+                        document.getElementById("esw-fab").click();
+                        var styleEmb = document.createElement("style");
+                        styleEmb.type = "text/css";
+                        styleEmb.innerHTML = "button.fab {visibility:visible;}";
+                        document.getElementsByTagName("head")[0].appendChild(styleEmb);
+                  }
+
+                  function showIESnackBar() {
+                        var x = document.getElementById("IESnackbar");
+                        x.className = "show";
+                        setTimeout(function () {
+                              x.className = x.className.replace("show", "");
+                        }, 6000);
+                  }
+
+                  function showFirefoxSnackBar() {
+                        var x = document.getElementById("firefoxSnackbar");
+                        x.className = "show";
+                        setTimeout(function () {
+                              x.className = x.className.replace("show", "");
+                        }, 6000);
+                  }
+
+                  function detectIEVersion() {
+                        // detect IE10 or older
+                        //console.log('detectIE10 Or Older');
+                        var ua = window.navigator.userAgent;
+                        var msie = ua.indexOf("MSIE ");
+                        if (msie > 0) {
+                              // IE 10 or older => return version number
+                              console.log("IE version: " + parseInt(ua.substring(msie + 5, ua.indexOf(".", msie)), 10));
+                              return true;
+                        } else {
+                              //console.log('Not IE10 Or Older');
+                        }
+
+                        // detect IE11
+                        //console.log('detectIE11');
+                        var ua = window.navigator.userAgent;
+                        var trident = ua.indexOf("Trident/");
+                        if (trident > 0) {
+                              // IE 11 => return version number
+                              var rv = ua.indexOf("rv:");
+                              console.log("IE11 version: " + parseInt(ua.substring(rv + 3, ua.indexOf(".", rv)), 10));
+                              return true;
+                        } else {
+                              //console.log('Not IE11');
+                        }
+                  }
+
+                  // Check if Firefox is running in private mode
+                  function isPrivateMode() {
+                        return new Promise(function detect(resolve) {
+                              var yes = function () {
+                                    resolve(true);
+                              }; // is in private mode
+                              var not = function () {
+                                    resolve(false);
+                              }; // not in private mod
+
+                              function isFirefoxPrivateMode() {
+                                    var isMozillaFirefox = "MozAppearance" in document.documentElement.style;
+                                    if (isMozillaFirefox) {
+                                          if (indexedDB == null) yes();
+                                          else {
+                                                var db = indexedDB.open("inPrivate");
+                                                db.onsuccess = not;
+                                                db.onerror = yes;
+                                          }
+                                    }
+                                    return isMozillaFirefox;
+                              }
+
+                              if (isFirefoxPrivateMode()) return;
+                              return not();
+                        });
+                  }
+
+                  var myInterval;
+                  function setInterval_listenClickOnBubble() {
+                        myInterval = setInterval(listenClickOnBubble, 500);
+                  }
+                  function listenClickOnBubble() {
+                        var bubble = document.getElementById("esw-fab");
+                        //console.log('bubble: ' , bubble);
+                        if (bubble != null) {
+                              bubble.addEventListener("click", showIESnackBar);
+                              clearInterval(myInterval);
+                        }
+                  }
+            </script>
+
+            <script type='text/javascript' src='https://service.force.com/embeddedservice/menu/fab.min.js'></script>
+            <script type='text/javascript'>
+                  var initESW = function (gslbBaseURL) {
+                        var usingOldIE = detectIEVersion();
+                        if (!usingOldIE) { // necessary condition, because old versions of IE don't support Promises
+                              isPrivateMode().then(function (isPrivate) {
+                                    //console.log('Browsing in Firefox private mode? ', isPrivate);
+                                    if (isPrivate) {
+                                          showFirefoxSnackBar();
+                                    }
+                              });
+                        } else {  // only on Internet Explorer versions before Microsoft Edge
+                              setInterval_listenClickOnBubble();
+                        }
+
+                        // Required if you want labels in a language that’s different from your user’s context.
+                        embedded_svc.menu.settings.language = 'it'; //For example, enter 'en' or 'en-US'
+                        embedded_svc.menu.chat.settings.paramUserId = "";
+
+                        embedded_svc.menu.init(
+                              'https://myconad2021--quality.my.salesforce.com',
+                              'https://d.la1-c1cs-cdg.salesforceliveagent.com/chat',
+                              gslbBaseURL,
+                              '00D1x0000008f1K',
+                              'Conad_Chat_Develop',
+                              {
+                                    pageName: 'PrechatSnip'
+                              }
+                        );
+                        var styleEmb = document.createElement('style');
+                        styleEmb.type = 'text/css';
+                        styleEmb.innerHTML = '.embedded-service button#esw-fab{background-attachment: fixed;} .embedded-service .fab{background-attachment: fixed !important; //background-color:#f37a28;} .embedded-service .cp-conad-chat-start-submt {background-attachment:fixed} .embedded-service .ch-conad-chat-topbar-close//{background-attachment:fixed}';
+                        document.getElementsByTagName('head')[0].appendChild(styleEmb);
+                  };
+
+                  if (!window.embedded_svc || !window.embedded_svc.menu) {
+                        var s = document.createElement('script');
+                        s.setAttribute('src', 'https://myconad2021--quality.my.salesforce.com/embeddedservice/menu/fab.min.js');
+                        s.onload = function () {
+                              initESW(null);
+                        };
+                        document.body.appendChild(s);
+                  } else {
+                        initESW('https://service.force.com');
+                  }
+            </script>
+      </body>
+
+</html>
